@@ -17,7 +17,7 @@ class ArtifactApiController extends Controller
         if (!$user) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
-        $trs = Trealets::where('type','=', 'artifact' )->whereNull('active')->get();
+        $trs = Trealets::where('type','=', 'stepquest' )->whereNull('active')->get();
         foreach ($trs as $tr) {
             $user = User::where('id',$tr->user_id)->first();
 
@@ -43,7 +43,7 @@ class ArtifactApiController extends Controller
         if (!$user) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
-        $trs = Trealets::where('type','=', 'artifact' )->whereNull('active')->where('user_id','=', $request->input('user_id') )->get();
+        $trs = Trealets::where('type','=', 'stepquest' )->whereNull('active')->where('user_id','=', $request->input('user_id') )->get();
         if ($trs) {
             return response()->json(['data' => $trs], 200);
            } else {

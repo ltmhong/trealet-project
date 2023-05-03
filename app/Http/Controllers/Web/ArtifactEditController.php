@@ -23,7 +23,7 @@ class ArtifactEditController extends Controller
     public function edit($id)
     {
         $data = Trealets::findOrFail($id);
-        $artifact = json_decode($data->json, true)['trealet'];
+        $stepquest = json_decode($data->json, true)['trealet'];
 
         return view('trealets.artifact-edit', compact('id', 'artifact'));
     }
@@ -190,14 +190,14 @@ class ArtifactEditController extends Controller
             return $value;
         }, $request->get('items'));
 
-        $artifact = ['trealet' => array_merge($request->only('title', 'des', 'minScore', 'gift', 'language'), ['items' => $items])];
+        $stepQuest = ['trealet' => array_merge($request->only('title', 'des', 'minScore', 'gift', 'language'), ['items' => $items])];
         DB::insert(
             'insert into au_trealets(id_str, user_id, title, type, json) value(UUID_SHORT(), ?, ?, ?, ?)',
             [
                 auth()->id(),
                 $request->get('title', ''),
                 Trealets::ARTIFACT_TYPE,
-                stripslashes(json_encode($artifact, JSON_UNESCAPED_UNICODE)),
+                stripslashes(json_encode($stepQuest, JSON_UNESCAPED_UNICODE)),
             ]
         );
 

@@ -49,7 +49,7 @@
     <div class="col-md-2">
         <div class="card widget">
             <div class="card-body">
-                <a href="artifact-edit">New artifact</a>
+                <a href="stepquest-edit">New artifact</a>
             </div>
         </div>
     </div>

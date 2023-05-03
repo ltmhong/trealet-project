@@ -70,7 +70,7 @@ Route::post('upload_new_trealet', 'EditTrealetController@upload_new_trealet')->n
 Route::post('upload_video', 'UploadController@video_upload')->name('video_upload');
 Route::post('upload_image',    'UploadController@image_upload')->name('image-upload');
 Route::post('upload_audio', 'UploadController@audio_upload')->name('audio-upload');
-Route::post('upload_artifact', 'UploadController@artifact_upload')->name('artifact-upload');
+Route::post('upload_model', 'UploadController@model_upload')->name('model-upload');
 /**
  *StepQuest
  */
@@ -354,7 +354,6 @@ Route::prefix('/v2')->group(function () {
     Route::post('/uploadImage', 'UploadController@image_upload_api')->name('uploadImg');
     Route::post('/uploadVideo', 'UploadController@video_upload_api')->name('uploadVid');
     Route::post('/uploadAudio', 'UploadController@audio_upload_api')->name('uploadAud');
-    Route::post('/uploadArtifact', 'UploadController@artifact_upload_api')->name('uploadArtifact');
 });
 
 Route::prefix('/map-player')->group(function () {

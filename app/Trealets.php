@@ -10,6 +10,7 @@ class Trealets extends Model
     use HasFactory;
 
     const STEPQUEST_TYPE = 'stepquest';
+    const ARTIFACT_TYPE = 'artifact';
 
     protected $fillable = [
         'json', 'user_id', 'title', 'type', 'published', 'state'

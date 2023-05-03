@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('page-title', 'StepQuest Update')
-@section('page-heading', 'StepQuest Update')
+@section('page-title', 'Artifact Update')
+@section('page-heading', 'Artifact Update')
 
 @section('breadcrumbs')
 <li class="breadcrumb-item active">
-    You can update your stepquest trealet here
+    Edit your artifact module
 </li>
 @stop
 
@@ -43,7 +43,7 @@
         <div class="step p-4" id="info">
             <form id="main-form">
                 <div class="d-flex mb-2 py-1">
-                    <div class="text-left w-110 font-500">Tiêu đề<span style="color:red"> *</span></div>
+                    <div class="text-left w-110 font-500">Tên hiện vật<span style="color:red"> *</span></div>
                     <div class="flex-grow-1">
                         <input type="text" class="w-100 form-control" id = "name" name="title" placeholder="Nhập tiêu đề" value="{{ $stepquest['title']?? '' }}">
                     </div>
@@ -54,7 +54,7 @@
                         <textarea class="w-100 no-resize form-control" name="des" id= "des" rows="3"  placeholder="Nhập địa điểm tham quan nếu có">{{ $stepquest['des'] ?? '' }}</textarea>
                     </div>
                 </div>
-                <div class="d-flex mb-2 py-1">
+                {{-- <div class="d-flex mb-2 py-1">
                     <div class="text-left w-110 font-500">Điểm số tối thiểu để nhận thưởng</div>
                     <div class="flex-grow-1">
                         @if ($stepquest['minScore'] == "1")
@@ -103,8 +103,8 @@
                             </select>
                         @endif
                     </div>
-                </div>
-                <div class="d-flex mb-2 py-1">
+                </div> --}}
+                {{-- <div class="d-flex mb-2 py-1">
                     <div class="text-left w-110 font-500">Phần thưởng</div>
                     <div class="flex-grow-1">
                         <input type="text" class="w-100 form-control" name="gift" placeholder="Nhập phần thưởng" value="{{ $stepquest['gift']?? '' }}">
@@ -135,7 +135,7 @@
                             </select>
                         @endif
                      </div>
-                </div>
+                </div> --}}
             </form>
         </div>
         @foreach($stepquest['items'] as $key => $val)
@@ -144,25 +144,25 @@
                 <div class="flex-grow-1 d-flex main-block d-flex justify-content-between h-full" style="position: relative">
                     <div class="flex-grow-1 overflow-y-auto form-wrap">
                         <div style="margin: 20px;">
-                        <h5>Hãy chọn 1 loại step bạn muốn!</h5>
+                        <h5>Chọn 1 loại tương tác!</h5>
                             @if ($val['type']=='Display')
                             <select class="form-control selectpicker" onchange="changeType(event)" id="selectType{{ $key+1 }}">
                                 <option value = "display" selected>Hiển thị</option>
                                 <option value = "qr">Quét QR</option>
-                                <option value = "quizz">Câu đố</option>
+                                {{-- <option value = "quizz">Câu đố</option>
                                 <option value = "audio">Ghi âm</option>
                                 <option value = "picture">Chụp hình</option>
-                                <option value = "jigsaw">Xếp hình</option>
+                                <option value = "jigsaw">Xếp hình</option> --}}
                             </select>
                             @endif
                             @if ($val['type']=='QR')
                             <select class="form-control selectpicker" onchange="changeType(event)" id="selectType{{ $key+1 }}">
                                 <option value = "display" >Hiển thị</option>
                                 <option value = "qr" selected >Quét QR</option>
-                                <option value = "quizz">Câu đố</option>
+                                {{-- <option value = "quizz">Câu đố</option>
                                 <option value = "audio">Ghi âm</option>
                                 <option value = "picture">Chụp hình</option>
-                                <option value = "jigsaw">Xếp hình</option>
+                                <option value = "jigsaw">Xếp hình</option> --}}
                             </select>
                             @endif
                             @if ($val['type']=='Quizz')
@@ -227,7 +227,7 @@
 
                                         <div class="w-100">
                                             <div class="custom-control custom-radio">
-                                                <label class="upload-field upload-field-label" for="upload-field-{{ $key+1 }}">Tải lên video, audio, ảnh minh họa! (mp3, wav, mp4, png, jpg)</label>
+                                                <label class="upload-field upload-field-label" for="upload-field-{{ $key+1 }}">Tải lên video, audio, ảnh hoặc mô hình 3D minh họa! (mp3, wav, mp4, png, jpg, glb)</label>
                                                 <input type="file" class="form-control d-none upload-field-input" onchange = "changeFileInput(event, this.files)" id="upload-field-{{ $key+1 }}" @if($val['type'] == 'Display') type-data = "old" @endif/>
                                                 <div class="upload-field-preview">
                                                     @if($val['type'] == 'Display')
@@ -264,7 +264,7 @@
                                 </div>
                                 <div class="p-2">
                                     <div class="d-flex align-items-center">
-                                        <label style="min-width: 60px;text-align:center" for="">Youtube</label>
+                                        <label style="min-width: 150px;text-align:center" for="">Link Youtube</label>
                                         <input type="text" class="youtube form-control mb-2 ml-2" @if($val['type']=='Display' ) value="{{ $val['youtube'] ??'' }}" @endif>
                                     </div>
                                 </div>
@@ -436,7 +436,7 @@
                             <!-- The rest -->
                             <div class="p-2">
                                 <div class="d-flex align-items-center">
-                                    <label style="min-width: 60px;text-align:center" for="">Điểm</label>
+                                    <label style="min-width: 0px;text-align:center" for="">Điểm</label>
                                     @if($val['score'] == '1')
                                     <select class="score w-100 form-control mb-2 ml-2">
                                         <option value="1" >1</option>
@@ -856,14 +856,14 @@
 
         $(document).on('change', `#step${currentSteps + 1} .upload-field-input`, async function() {
             //update by NDT
-            if(this.files[this.files.length - 1].type != "image/jpeg" && this.files[this.files.length - 1].type != "image/png" && this.files[this.files.length - 1].type != "video/mp4" && this.files[this.files.length - 1].type != "audio/mpeg"&& this.files[this.files.length - 1].type != "audio/wav"){
-                alert("Vui lòng nhập đúng định dạng file (jpg, png, mp3, wav, mp4)!");
-                return;
-            }
-            if(this.files[this.files.length - 1].type == "image/png" || this.files[this.files.length - 1].type == "image/jpeg"){
+            // if(this.files[this.files.length - 1].type != "image/jpeg" && this.files[this.files.length - 1].type != "image/png" && this.files[this.files.length - 1].type != "video/mp4" && this.files[this.files.length - 1].type != "audio/mpeg"&& this.files[this.files.length - 1].type != "audio/wav"){
+            //     alert("Vui lòng nhập đúng định dạng file (jpg, png, mp3, wav, mp4)!");
+            //     return;
+            // }
+            // if(this.files[this.files.length - 1].type == "image/png" || this.files[this.files.length - 1].type == "image/jpeg"){
             var img = document.createElement("img");
             img.setAttribute("src",URL.createObjectURL(this.files[this.files.length - 1]));
-            img.setAttribute("type","image/png");
+            // img.setAttribute("type","image/png");
             img.setAttribute("style", "width : 100%");
 
             var container;
@@ -889,7 +889,7 @@
             }
             container.setAttribute("data", await convertFileToBase64(this.files[this.files.length - 1]));
             container.append(img);
-        }
+        // }
 
             if(this.files[this.files.length - 1].type == "audio/mpeg"|| this.files[this.files.length - 1].type == "audio/wav"){
 
@@ -1195,7 +1195,7 @@
         var z = z + 1;
         setTimeout(() => { }, 5000);
     }
-    pdf.save('qr-stepquest.pdf');
+    pdf.save('qr-artifact.pdf');
         return {
             validData,
             formData
@@ -1217,14 +1217,14 @@
     async function changeFileInput(e, files) {
             var indexStep = String(e.target.id).replace("upload-field-","");
 
-            if(files[files.length - 1].type != "image/jpeg" && files[files.length - 1].type != "image/png" && files[files.length - 1].type != "video/mp4" && files[files.length - 1].type != "audio/mpeg"&& files[files.length - 1].type != "audio/wav"){
-                alert("Vui lòng nhập đúng định dạng file (jpg, png, mp3, wav, mp4)!");
-                return;
-            }
-            if(files[files.length - 1].type == "image/png" || files[files.length - 1].type == "image/jpeg"){
+            // if(files[files.length - 1].type != "image/jpeg" && files[files.length - 1].type != "image/png" && files[files.length - 1].type != "video/mp4" && files[files.length - 1].type != "audio/mpeg"&& files[files.length - 1].type != "audio/wav"){
+            //     alert("Vui lòng nhập đúng định dạng file (jpg, png, mp3, wav, mp4)!");
+            //     return;
+            // }
+            // if(files[files.length - 1].type == "image/png" || files[files.length - 1].type == "image/jpeg"){
             var img = document.createElement("img");
             img.setAttribute("src",URL.createObjectURL(files[files.length - 1]));
-            img.setAttribute("type","image/png");
+            // img.setAttribute("type","image/png");
             img.setAttribute("style", "width : 100%");
 
             var container;
@@ -1244,7 +1244,7 @@
             }
             container.setAttribute("data", await convertFileToBase64(files[files.length - 1]));
             container.append(img);
-        }
+        // }
 
             if(files[files.length - 1].type == "audio/mpeg"|| files[files.length - 1].type == "audio/wav"){
 
@@ -1550,7 +1550,7 @@
 
     ul.tab li.step-number .tablinks {
         height: 100%;
-        width: 72px;
+        width: 80px;
         border-radius: 10px;
         overflow: hidden;
         background-color: #fff;

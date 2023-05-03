@@ -9,7 +9,7 @@ class Trealets extends Model
 {
     use HasFactory;
 
-    const STEPQUEST_TYPE = 'stepquest';
+    const STEPQUEST_TYPE = 'artifact';
     const ARTIFACT_TYPE = 'artifact';
 
     protected $fillable = [

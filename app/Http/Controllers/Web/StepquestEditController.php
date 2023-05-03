@@ -25,7 +25,7 @@ class StepquestEditController extends Controller
         $data = Trealets::findOrFail($id);
         $stepquest = json_decode($data->json, true)['trealet'];
 
-        return view('trealets.my-stepquest-edit', compact('id', 'stepquest'));
+        return view('trealets.my-stepquest-edit', compact('id', 'artifact'));
     }
 
     public function update($id, Request $request)
@@ -65,7 +65,7 @@ class StepquestEditController extends Controller
             unset($value['index']);
             return $value;
         }, $request->get('items'));
-        $stepQuest = [
+        $artifact = [
             'trealet' => array_merge(
                 $request->only('title', 'des','language', 'minScore'),
                 ['items' => $items]
@@ -76,7 +76,7 @@ class StepquestEditController extends Controller
             [
                 auth()->id(),
                 $request->get('title', ''),
-                stripslashes(json_encode($stepQuest, JSON_UNESCAPED_UNICODE)),
+                stripslashes(json_encode($artifact, JSON_UNESCAPED_UNICODE)),
                 $id,
             ]
         );

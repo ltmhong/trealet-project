@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('page-title', 'Create Artifact')
-@section('page-heading', 'Create Artifact')
+@section('page-title', 'Artifact Create')
+@section('page-heading', 'Artifact Create')
 
 @section('breadcrumbs')
 <li class="breadcrumb-item active">
@@ -54,31 +54,9 @@
                     <div class="text-left w-110 font-500">Mô tả<span style="color:red"> *</span></div>
 
                     <div class="flex-grow-1">
-                        <textarea class="w-100 no-resize form-control" name="des" id= "des" rows="3"  placeholder="Nhập mô tả cho hiện vật"></textarea>
+                        <textarea class="w-100 no-resize form-control" name="des" id= "des" rows="3"  placeholder="Nhập mô tả"></textarea>
                     </div>
-                </div>
-
-                {{-- <div class="d-flex mb-2 py-1">
-                    <div class="text-left w-110 font-500">Điểm số tối thiểu để nhận thưởng</div>
-
-                    <div class="flex-grow-1">
-                        <select class="w-100 no-resize form-control" name="minScore" id = "language" aria-label="Default select example" rows="4">
-                            <option value="1" selected>1</option>
-                            <option value="20">20</option>
-                            <option value="40">40</option>
-                            <option value="60">60</option>
-                            <option value="80">80</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="d-flex mb-2 py-1">
-                    <div class="text-left w-110 font-500">Phần thưởng</div>
-
-                    <div class="flex-grow-1">
-                        <input type="text" class="w-100 form-control" name="gift" placeholder="Nhập phần thưởng">
-                    </div>
-                </div> --}}
+                </div>               
 
                 <div class="d-flex mb-2 py-1">
                     <div class="text-left w-110 font-500">Ngôn ngữ</div>
@@ -101,15 +79,11 @@
                     <div class="flex-grow-1 overflow-y-auto form-wrap">
 
                         <div style="margin: 20px;">
-                            <h5>Hãy chọn 1 loại step bạn muốn!</h5>
+                            <h5>Hãy chọn 1 loại tương tác!</h5>
 
                             <select class="form-control selectpicker" id="selectType1">
                                 <option value = "display">Hiển thị dữ liệu</option>
                                 <option value = "qr">Quét QR</option>
-                                <option value = "quizz">Câu đố</option>
-                                {{-- <option value = "audio">Ghi âm</option>
-                                <option value = "picture">Chụp hình</option>
-                                <option value = "jigsaw">Xếp hình</option> --}}
                             </select>
                         </div>
 
@@ -120,14 +94,7 @@
                             <div class="wrap-type" id="display">
                                 <div class="p-2">
                                     <div class="d-flex align-items-center">
-                                        <label style="min-width: 160px;text-align:left; padding-left: 24px" for="">Lưu ý</label>
-
-                                        <input type="text" class="suggest form-control mb-2 ml-2">
-                                    </div>
-
-                                    <div class="d-flex align-items-center">
-                                        <label style="min-width: 160px;text-align:left; padding-left: 24px" for="">Mô tả</label>
-
+                                        <label style="min-width: 60px;text-align:center" for="">Mô tả</label>
                                         <textarea class="description form-control mb-2 ml-2"></textarea>
                                     </div>
                                 </div>
@@ -136,19 +103,20 @@
                                     <div class="d-flex">
                                         <div class="w-100">
                                             <div class="custom-control custom-radio">
-                                                <label class="upload-field upload-field-label" for="upload-field">Tải lên mô hình 3D, video, audio, hình ảnh minh họa! (glb, mp4, wav, mp3, png, jpg)</label>
-
+                                                <label class="upload-field upload-field-label" for="upload-field">Tải lên mô hình 3D, video, audio, hình ảnh minh họa!</label>
                                                 <input type="file" class="form-control d-none upload-field-input display-input" id="upload-field" />
-
                                                 <div class="upload-field-preview" id="file-preview" style="width: 100%;height:100%"></div>
                                             </div>
                                         </div>
+
+                                        <ul id="sortable1" class="flex-grow-1 connectedSortable connectedSortable1 py-2 px-2 list-group border" title="Kéo ảnh">
+                                        </ul>
                                     </div>
                                 </div>
 
                                 <div class="p-2">
                                     <div class="d-flex align-items-center">
-                                        <label style="min-width: 160px; text-align:left; padding-left: 24px" for="">Hoặc dán <br>đường dẫn Youtube</label>
+                                        <label style="min-width: 60px;text-align:center" for="">Hoặc Youtube</label>
 
                                         <input type="text" class="youtube form-control mb-2 ml-2">
                                     </div>
@@ -159,175 +127,17 @@
                             <div class="wrap-type d-none" id="qr">
                                 <div class="p-2">
                                     <div class="d-flex align-items-center">
-                                        <label style="min-width: 120px;text-align:left; padding-left: 24px" for="">ID của QR<span style="color:red"> *</span></label>
-                                        <input type="text" class="code form-control mb-2 ml-2">
+                                        <label style="min-width: 60px;text-align:center" for="">QR ID<span style="color:red"> *</span></label><input type="text" class="code form-control mb-2 ml-2">
                                     </div>
 
                                     <div class="d-flex align-items-center">
-                                        <label style="min-width: 120px;text-align:left; padding-left: 24px" for="">Tên QR<span style="color:red"> *</span></label>
+                                        <label style="min-width: 60px;text-align:center" for="">Tên QR<span style="color:red"> *</span></label>
+
                                         <input type="text" class="title-qr form-control mb-2 ml-2">
                                     </div>
 
                                     <div class="d-flex align-items-center">
-                                        <label style="min-width: 120px;text-align:left; padding-left: 24px" for="">Mô tả</label>
-                                        <input type="text" class="hint form-control mb-2 ml-2">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Quizz -->
-                            <div class="wrap-type d-none" id="quizz">
-                                <div class="p-2">
-                                    <div class="d-flex">
-                                        <div class="w-100">
-                                            <div class="custom-control custom-radio">
-                                                <label class="upload-field upload-field-label" for="upload-field">Tải lên video, audio, hình ảnh minh họa! (mp3, wav, mp4, png, jpg)</label>
-
-                                                <input type="file" class="form-control d-none upload-field-input display-input" id="upload-field" />
-
-                                                <div class="upload-field-preview" id="file-preview" style="width: 100%; height:100%">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <ul id="sortable1" class="flex-grow-1 connectedSortable connectedSortable1 py-2 px-2 list-group border">
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="d-flex flex-column px-2">
-                                    <div class="answer-box">
-                                        <div class="d-flex align-items-center">
-                                            <label style="min-width: 60px;text-align:center" for="">Câu hỏi</label>
-
-                                            <input type="text" placeholder="Nội dung" class="form-control mb-2" name="question">
-                                        </div>
-
-                                        <span id="desc-upload" class="small font-italic text-muted">Cần chọn ít nhất 1 đáp án đúng!!</span>
-
-                                        <div class="form-check mb-1 answer d-flex align-items-center">
-                                            <input type="radio" style="width: 16px; height: 16px;" class="form-check-input mr-2" value="1" name="answer" checked>
-
-                                            <input type="text" name="textAnser1" id="" class="answerText form-control">
-
-                                            <button class="btn btn-secondary btn-circle ml-2" onclick="deleteAnswer(event)">
-                                                Xóa
-                                            </button>
-                                        </div>
-
-                                        <div class="form-check mb-1 answer d-flex align-items-center">
-                                            <input type="radio" style="width: 16px; height: 16px;" class="form-check-input mr-2" value="2" name="answer">
-                                            <input type="text" name="textAnser2" id="" class="answerText form-control">
-                                            <button class="btn btn-secondary btn-circle ml-2" onclick="deleteAnswer(event)">
-                                                Xóa
-                                            </button>
-                                        </div>
-
-                                        <div class="form-check mb-1 answer d-flex align-items-center">
-                                            <input type="radio" style="width: 16px; height: 16px;" class="form-check-input mr-2" value="3" name="answer">
-                                            <input type="text" name="textAnser3" id="" class="answerText form-control">
-                                            <button class="btn btn-secondary btn-circle ml-2" onclick="deleteAnswer(event)">
-                                                Xóa
-                                            </button>
-                                        </div>
-
-                                        <div class="form-check mb-1 answer d-flex align-items-center">
-                                            <input type="radio" style="width: 16px; height: 16px;" class="form-check-input mr-2" value="4" name="answer">
-                                            <input type="text" name="textAnser4" id="" class="answerText form-control">
-                                            <button class="btn btn-secondary btn-circle ml-2" onclick="deleteAnswer(event)">
-                                                Xóa
-                                            </button>
-                                        </div>
-
-                                        <div class="form-check mb-1 answer">
-                                            <div class="add-answer" onclick="addAnswer(event)">
-                                                Thêm câu trả lời
-                                            </div>
-                                        </div>
-
-                                        <p class="text-danger error-answer d-none mb-0"></p>
-                                    </div>
-
-                                    <div class="d-flex align-items-center mt-3">
-                                        <label style="min-width: 60px;text-align:center" for="">Giải thích</label>
-                                        <input type="text" class="hint form-control mb-2 ml-2">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Audio -->
-                            <div class="wrap-type d-none" id="audio">
-                                <div class="p-2">
-                                    <div class="d-flex align-items-center">
-                                        <label style="min-width: 60px;text-align:center" for="">Gợi ý</label>
-
-                                        <input type="text" class="suggest_audio form-control mb-2 ml-2">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Picture -->
-                            <div class="wrap-type d-none" id="picture">
-                                <div class="p-2">
-                                    <div class="d-flex align-items-center">
-                                        <label style="min-width: 60px;text-align:center" for="">Gợi ý</label>
-
-                                        <input type="text" class="suggest_picture form-control mb-2 ml-2" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Jigsaw -->
-                            <div class="wrap-type d-none" id="jigsaw">
-                                <div class="p-2">
-                                    <div class="d-flex">
-                                        <div class="w-100">
-                                            <div class="custom-control custom-radio">
-                                                <div class="p-2">
-                                                <label class="upload-field upload-field-label" for="upload-field">Tải hình ảnh minh họa! (png, jpg)</label>
-
-                                                <input type="file" class="form-control d-none upload-field-input display-input" id="upload-field" />
-
-                                                <div class="upload-field-preview" id="file-preview" style="width: 100%;height:100%"></div>
-                                                <div class="d-flex align-items-center">
-                                        <label style="min-width: 60px;text-align:center" for="">Giải thích</label>
-                                        <textarea type="text" class="hint form-control mb-2 ml-2"></textarea>
-                                    </div>
-                                            </div>
-                                        </div>
-
-                                        <ul id="sortable1" class="flex-grow-1 connectedSortable connectedSortable1 py-2 px-2 list-group border" title="Kéo ảnh"></ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="p-2">
-                                <div class="d-flex align-items-center">
-                                    <label style="min-width: 60px;text-align:center" for="">Điểm</label>
-
-                                    <select class="score w-100 form-control mb-2 ml-2">
-                                        <option value="1" selected>1</option>
-                                        <option value="3">3</option>
-                                        <option value="5">5</option>
-                                        <option value="10">10</option>
-                                        <option value="20">20</option>
-                                        <option value="50">50</option>
-                                    </select>
-                                </div>
-
-                                <br>
-
-                                <div class="d-flex align-items-center">
-                                    <label style="min-width: 60px;text-align:center" for="">Thời Gian</label>
-
-                                    <div>
-                                        <select class="time w-100 mb-2 ml-2 form-control">
-                                            <option value="none" selected>Không giới hạn</option>
-                                            <option value="30">30 giây</option>
-                                            <option value="60">1 phút</option>
-                                            <option value="90">1 phút 30 giây</option>
-                                            <option value="120">2 phút</option>
-                                        </select>
+                                        <label style="min-width: 60px;text-align:center" for="">Mô tả</label><input type="text" class="hint form-control mb-2 ml-2">
                                     </div>
                                 </div>
                             </div>
@@ -638,20 +448,14 @@
         });
         $(document).on('change', `#step${currentSteps + 1} .upload-field-input`, async function() {
             //update by NDT
-            if(this.files[this.files.length - 1].type != "image/jpeg" &&
-                this.files[this.files.length - 1].type != "image/png" &&
-                this.files[this.files.length - 1].type != "video/mp4" &&
-                this.files[this.files.length - 1].type != "audio/mpeg"&&
-                this.files[this.files.length - 1].type != "model/glb"&&
-                this.files[this.files.length - 1].type != "audio/wav")
-            {
-                alert("Vui lòng nhập đúng định dạng file (glb, mp4, wav, mp3, jpg, png)!");
-                return;
-            }
-            if(this.files[this.files.length - 1].type == "image/png" || this.files[this.files.length - 1].type == "image/jpeg"){
+            // if(this.files[this.files.length - 1].type != "image/jpeg" && this.files[this.files.length - 1].type != "image/png" && this.files[this.files.length - 1].type != "video/mp4" && this.files[this.files.length - 1].type != "audio/mpeg"&& this.files[this.files.length - 1].type != "audio/wav"){
+            //     alert("Vui lòng nhập đúng định dạng file (jpg, png, mp3, wav, mp4)!");
+            //     return;
+            // }
+            // if(this.files[this.files.length - 1].type == "image/png" || this.files[this.files.length - 1].type == "image/jpeg"){
                 var img = document.createElement("img");
                 img.setAttribute("src",URL.createObjectURL(this.files[this.files.length - 1]));
-                img.setAttribute("type","image/png");
+                // img.setAttribute("type","image/png");
                 img.setAttribute("style", "width : 100%");
 
                 var container;
@@ -672,7 +476,7 @@
                 }
                 container.setAttribute("data", await convertFileToBase64(this.files[this.files.length - 1]));
                 container.append(img);
-            }
+            // }
 
             if(this.files[this.files.length - 1].type == "audio/mpeg"|| this.files[this.files.length - 1].type == "audio/wav"){
 
@@ -726,34 +530,6 @@
             }
             container.setAttribute("data", await convertFileToBase64(this.files[this.files.length - 1]));
             container.append(video);
-        }
-
-        if(this.files[this.files.length - 1].type == "model/glb"){
-            var model = document.createElement("model");
-            model.setAttribute("width", "100%");
-            model.setAttribute("height", "100%")
-            model.controls = true
-            var source = document.createElement("source");
-            source.setAttribute("src",URL.createObjectURL(this.files[this.files.length - 1]));
-            source.setAttribute("type","model/glb");
-            model.appendChild(source);
-
-            var container;
-            if(document.getElementById("selectType" + String(currentSteps + 1)).value == "quizz"){
-                container = document.getElementById(`step${currentSteps + 1}`).querySelectorAll(".upload-field-preview")[1];
-            }
-            else if(document.getElementById("selectType" + String(currentSteps + 1)).value == "jigsaw"){
-                return alert("Vui lòng tải lên hình ảnh định dạng png, jpg");
-            }
-            else{
-                container = document.getElementById(`step${currentSteps + 1}`).querySelectorAll(".upload-field-preview")[0];
-            }
-            container.setAttribute("type", "model");
-            while (container.firstChild) {
-                container.removeChild(container.firstChild);
-            }
-            container.setAttribute("data", await convertFileToBase64(this.files[this.files.length - 1]));
-            container.append(model);
         }
 
 
@@ -826,9 +602,6 @@
                             else if($(item).find('.upload-field-input')[0]?.files[0].type == "video/mp4"){
                                 formData.append(`items[${index}][media]`, "video");
                             }
-                            else if($(item).find('.upload-field-input')[0]?.files[0].type == "model/glb"){
-                                formData.append(`items[${index}][media]`, "model");
-                            }
                             else if($(item).find('.upload-field-input')[0]?.files[0].type == "image/png" || $(item).find('.upload-field-input')[0]?.files[0].type == "image/jpeg"){
                                 formData.append(`items[${index}][media]`, "image");
                             }
@@ -863,9 +636,6 @@
                             }
                             else if($(item).find('.upload-field-input')[0]?.files[0].type == "video/mp4"){
                                 formData.append(`items[${index}][media]`, "video");
-                            }
-                            else if($(item).find('.upload-field-input')[0]?.files[0].type == "model/glb"){
-                                formData.append(`items[${index}][media]`, "model");
                             }
                             else if($(item).find('.upload-field-input')[0]?.files[0].type == "image/png" || $(item).find('.upload-field-input')[0]?.files[0].type == "image/jpeg") {
                                 formData.append(`items[${index}][media]`, "image");
@@ -1018,20 +788,15 @@
 
     //update by NDT
     $(document).on('change', '#step1 .upload-field-input', async function() {
-        if(this.files[this.files.length - 1].type != "image/jpeg" &&
-            this.files[this.files.length - 1].type != "image/png" &&
-            this.files[this.files.length - 1].type != "video/mp4" &&
-            this.files[this.files.length - 1].type != "model/glb" &&
-            this.files[this.files.length - 1].type != "audio/mpeg"&&
-            this.files[this.files.length - 1].type != "audio/wav") {
-                alert("Vui lòng nhập đúng định dạng file (glb, jpg, png, mp3, wav, mp4)!");
-                return;
-            }
+        // if(this.files[this.files.length - 1].type != "image/jpeg" && this.files[this.files.length - 1].type != "image/png" && this.files[this.files.length - 1].type != "video/mp4" && this.files[this.files.length - 1].type != "audio/mpeg"&& this.files[this.files.length - 1].type != "audio/wav") {
+        //         alert("Vui lòng nhập đúng định dạng file (jpg, png, mp3, wav, mp4)!");
+        //         return;
+        //     }
 
-            if(this.files[this.files.length - 1].type == "image/png" || this.files[this.files.length - 1].type == "image/jpeg") {
+            // if(this.files[this.files.length - 1].type == "image/png" || this.files[this.files.length - 1].type == "image/jpeg") {
                 var img = document.createElement("img");
                 img.setAttribute("src",URL.createObjectURL(this.files[this.files.length - 1]));
-                img.setAttribute("type","image/png");
+                // img.setAttribute("type","image/png");
                 img.setAttribute("style", "width : 100%");
 
                 var container;
@@ -1054,7 +819,7 @@
                 container.setAttribute("data", await convertFileToBase64(this.files[this.files.length - 1]));
 
                 container.append(img);
-            }
+            // }
 
             if(this.files[this.files.length - 1].type == "audio/mpeg"|| this.files[this.files.length - 1].type == "audio/wav") {
                 var audio = document.createElement("audio");
@@ -1116,37 +881,6 @@
 
                 container.setAttribute("data", await convertFileToBase64(this.files[this.files.length - 1]));
                 container.append(video);
-            }
-
-            if (this.files[this.files.length - 1].type == "model/glb") {
-                var model = document.createElement("model");
-                model.setAttribute("width", "100%");
-                model.setAttribute("height", "100%");
-                model.controls = true;
-                var source = document.createElement("source");
-                source.setAttribute("src",URL.createObjectURL(this.files[this.files.length - 1]));
-                source.setAttribute("type","model/glb");
-                model.appendChild(source);
-
-                var container;
-                if(document.getElementById("selectType1").value == "quizz"){
-                    container = document.getElementById(`step1`).querySelectorAll(".upload-field-preview")[1];
-                }
-                else if(document.getElementById("selectType1").value == "jigsaw"){
-                    return alert("Vui lòng tải lên hình ảnh định dạng png, jpg");
-                }
-                else{
-                    container = document.getElementById(`step1`).querySelectorAll(".upload-field-preview")[0];
-                }
-
-                container.setAttribute("type", "model");
-
-                while (container.firstChild) {
-                    container.removeChild(container.firstChild);
-                }
-
-                container.setAttribute("data", await convertFileToBase64(this.files[this.files.length - 1]));
-                container.append(model);
             }
             console.log(container);
         });
